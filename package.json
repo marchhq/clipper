@@ -4,8 +4,13 @@
   "description": "Chrome extension for clipping content",
   "private": true,
   "scripts": {
-    "dev": "bun build ./src/index.tsx --outdir=dist --watch",
-    "build": "bun build ./src/index.tsx --outdir=dist",
+    "dev": "bun run generate-icons && bun build ./src/index.tsx --outdir=dist --watch",
+    "build": "bun run generate-icons && bun build ./src/index.tsx --outdir=dist",
+    "build:firefox": "bun run build && bun run zip:firefox",
+    "build:chrome": "bun run build && bun run zip:chrome",
+    "generate-icons": "mkdir -p dist/icons && for size in 16 48 128; do convert -background none -resize ${size}x${size} src/icons/icon.svg dist/icons/icon${size}.png; done",
+    "zip:chrome": "cd dist && zip -r ../chrome-extension.zip *",
+    "zip:firefox": "cd dist && zip -r ../firefox-extension.zip *",
     "lint": "eslint . --ext .ts,.tsx",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
