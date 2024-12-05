@@ -1,0 +1,12 @@
+{
+  "manifest_version": 3,
+  "name": "Clipper Extension",
+  "version": "0.0.1",
+  "description": "Chrome extension for clipping content",
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "permissions": [
+    "activeTab"
+  ]
+}
